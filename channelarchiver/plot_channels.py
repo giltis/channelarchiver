@@ -1,9 +1,12 @@
-
 from channelarchiver import codes, Archiver
-import matplotlib.pyplot as plt
 import re
 
 
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    raise ImportError("The functions in the plotting module require "
+                      "matplotlib to be installed.")
 
 
 def plot(archiver, xchannel, ychannel, start, end):

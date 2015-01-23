@@ -14,7 +14,6 @@ setup(
     packages=['channelarchiver'],
     install_requires=[
         'tzlocal',
-        'matplotlib'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
