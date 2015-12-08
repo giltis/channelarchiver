@@ -113,6 +113,13 @@ class TestUtils(unittest.TestCase):
         # Note nanoseconds get rounded off in conversion to microseconds
         self.assertEqual(dt, datetime.datetime(2013, 8, 17, 2, 20, 13, 123457, utils.utc))
 
+    def test_datetime_from_sec_and_nano_near_1e9_ns(self):
+        seconds = 1376706013
+        nanoseconds = 999999500
+        dt = utils.datetime_from_sec_and_nano(seconds, nanoseconds)
+        # Note nanoseconds get rounded off in conversion to microseconds
+        self.assertEqual(dt, datetime.datetime(2013, 8, 17, 2, 20, 14, 0, utils.utc))
+
     def test_datetime_from_sec_and_nano_with_utc(self):
         seconds = 1342129643
         nanoseconds = 123456789
@@ -134,7 +141,7 @@ class TestUtils(unittest.TestCase):
         dt_correct = melbourne_tz.localize(datetime.datetime(2014, 2, 18, 5, 51, 13, 987654))
         self.assertEqual(dt, dt_correct)
         self.assertEqual(dt.utcoffset(), datetime.timedelta(0, 39600))
-        
+
     def test_sec_and_nano_from_datetime(self):
         dt = datetime.datetime(2013, 8, 17, 2, 20, 13, 123456)
         seconds, nanoseconds = utils.sec_and_nano_from_datetime(dt)
